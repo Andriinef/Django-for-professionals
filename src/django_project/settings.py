@@ -6,7 +6,10 @@ SRC_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = SRC_DIR.parent
 
 
-SECRET_KEY = getenv("DJANGO_SECRET_KEY", default="django-insecure-^#bh514euy38k9jf^!dzjl*euca)_u5h_dn26ilf!7y7z*0)xh")
+SECRET_KEY = getenv(
+    "DJANGO_SECRET_KEY",
+    default="django-insecure-^#bh514euy38k9jf^!dzjl*euca)_u5h_dn26ilf!7y7z*0)xh",
+)
 
 DEBUG = getenv("DJANGO_DEBUG", default=True)
 
@@ -104,9 +107,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'uk'
+LANGUAGE_CODE = "uk"
 
-TIME_ZONE = 'Europe/Kiev'
+TIME_ZONE = "Europe/Kiev"
 
 USE_I18N = True
 

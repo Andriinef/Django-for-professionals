@@ -1,4 +1,4 @@
-from os import getenv, environ
+from os import getenv
 from pathlib import Path
 
 SRC_DIR = Path(__file__).resolve().parent.parent

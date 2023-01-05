@@ -1,4 +1,4 @@
-from os import getenv
+from os import getenv, environ
 from pathlib import Path
 
 SRC_DIR = Path(__file__).resolve().parent.parent
@@ -12,7 +12,7 @@ SECRET_KEY = getenv(
 
 DEBUG = getenv("DJANGO_DEBUG", default=True)
 
-ALLOWED_HOSTS = getenv("DJANGO_ALLOWED_HOSTS", default="0.0.0.0").split(",")
+ALLOWED_HOSTS = getenv("DJANGO_ALLOWED_HOSTS", default="*").split(",")
 
 DATABASES = {
     # "default": {
@@ -20,12 +20,12 @@ DATABASES = {
     #     "NAME": ROOT_DIR / "db.sqlite3",
     # }
     "default": {
-        "ENGINE": getenv("DB_ENGINE", default=""),
-        "HOST": getenv("DB_HOST", default=""),
-        "NAME": getenv("DB_NAME", default=""),
-        "USER": getenv("DB_USER", default=""),
-        "PASSWORD": getenv("DB_PASSWORD", default=""),
+        "ENGINE": getenv("DB_ENGINE", default="django.db.backends.postgresql"),
+        "HOST": getenv("DB_HOST", default="db"),
         "PORT": getenv("DB_PORT", default=""),
+        "NAME": getenv("DB_NAME", default="postgres"),
+        "USER": getenv("DB_USER", default="postgres"),
+        "PASSWORD": getenv("DB_PASSWORD", default="postgres"),
     }
 }
 
@@ -119,18 +119,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-# .env
-DJANGO_SECRET_KEY = "django-insecure-^#bh514euy38k9jf^!dzjl*euca)_u5h_dn26ilf!7y7z*0)xh"
-
-DJANGO_DEBUG = 1
-
-DJANGO_ALLOWED_HOSTS = "localhost,127.0.0.1,*"
-
-# DATABASES
-DB_ENGINE = "django.db.backends.postgresql"
-DB_HOST = "localhost"
-DB_PORT = "5432"
-DB_NAME = "postgres_4"
-DB_USER = "andrii"
-DB_PASSWORD = "5048"

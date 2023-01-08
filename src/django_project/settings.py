@@ -1,14 +1,15 @@
 from os import getenv
 from pathlib import Path
 
-
 AUTH_USER_MODEL = "accounts.CustomUser"
 
 SRC_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = SRC_DIR.parent
 
 
-SECRET_KEY = getenv("DJANGO_SECRET_KEY",)
+SECRET_KEY = getenv(
+    "DJANGO_SECRET_KEY",
+)
 
 DEBUG = getenv("DJANGO_DEBUG", default=True)
 

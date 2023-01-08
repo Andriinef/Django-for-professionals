@@ -1,18 +1,18 @@
 from os import getenv
 from pathlib import Path
 
+
+AUTH_USER_MODEL = "accounts.CustomUser"
+
 SRC_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = SRC_DIR.parent
 
 
-SECRET_KEY = getenv(
-    "DJANGO_SECRET_KEY",
-    default="django-insecure-^#bh514euy38k9jf^!dzjl*euca)_u5h_dn26ilf!7y7z*0)xh",
-)
+SECRET_KEY = getenv("DJANGO_SECRET_KEY",)
 
 DEBUG = getenv("DJANGO_DEBUG", default=True)
 
-ALLOWED_HOSTS = getenv("DJANGO_ALLOWED_HOSTS", default="*").split(",")
+ALLOWED_HOSTS = getenv("DJANGO_ALLOWED_HOSTS", default="0.0.0.0").split(", ")
 
 DATABASES = {
     # "default": {
@@ -20,12 +20,12 @@ DATABASES = {
     #     "NAME": ROOT_DIR / "db.sqlite3",
     # }
     "default": {
-        "ENGINE": getenv("DB_ENGINE", default="django.db.backends.postgresql"),
-        "HOST": getenv("DB_HOST", default="db"),
-        "PORT": getenv("DB_PORT", default=""),
-        "NAME": getenv("DB_NAME", default="postgres"),
-        "USER": getenv("DB_USER", default="postgres"),
-        "PASSWORD": getenv("DB_PASSWORD", default="postgres"),
+        "ENGINE": getenv("DB_ENGINE"),
+        "HOST": getenv("DB_HOST"),
+        "PORT": getenv("DB_PORT"),
+        "NAME": getenv("DB_NAME"),
+        "USER": getenv("DB_USER"),
+        "PASSWORD": getenv("DB_PASSWORD"),
     }
 }
 
@@ -42,16 +42,21 @@ MEDIA_ROOT = ROOT_DIR / "src/media"
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # Local
-    "pages.apps.PagesConfig",
 ]
+
+LOCAL_APPS = [
+    "pages.apps.PagesConfig",
+    "accounts",
+]
+
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
